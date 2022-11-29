@@ -21,12 +21,16 @@ const Home: Component = () => {
     const [mainTitle, setMainTitle] = createSignal('')
     const [typing, setTyping] = createSignal(State.Typing);
 
+    function titleLength(): number {
+        return mainTitle().length
+    }
+
     const interval: number = setInterval(() => {
         switch (typing()) {
             case State.Typing:
                 if (mainTitle() !== GREETS) {
                     setMainTitle(
-                        GREETS.slice(0, mainTitle().length + 1)
+                        GREETS.slice(0, titleLength() + 1)
                     );
                 } else {
                     sleep(2000).then(() => {
@@ -37,14 +41,13 @@ const Home: Component = () => {
                 }
                 break;
             case State.Deleting:
-                setMainTitle(
-                    GREETS.slice(0, mainTitle().length - 1)
-                );
-                if (mainTitle().length <= 1) {
-                    setTyping(
-                        State.Typing
-                    )
-                }
+                if (titleLength() != 0) {
+                    setMainTitle(
+                        GREETS.slice(0, titleLength() - 1)
+                    );
+                } else setTyping(
+                    State.Typing
+                )
                 break;
         }
     }, INTERVAL);
