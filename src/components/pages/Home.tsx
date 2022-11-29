@@ -14,37 +14,40 @@ function sleep(ms: number) {
     );
 }
 
+const GREETS: string = "Hello I am Matt!"
+const INTERVAL: number = 100
+
 const Home: Component = () => {
-    const greetings: string = "Hello I am Matt!"
-    const [mainTitle, setMainTitle] = createSignal("")
+    const [mainTitle, setMainTitle] = createSignal('')
     const [typing, setTyping] = createSignal(State.Typing);
 
     const interval: number = setInterval(() => {
-        if (typing() === State.Typing && mainTitle() !== greetings) {
-            setMainTitle(
-                greetings.slice(0, mainTitle().length + 1)
-            );
-        } else if (mainTitle() === greetings
-            && typing() === State.Typing
-        ) {
-            sleep(2000).then(() => {
-                setTyping(
-                    State.Deleting
-                )
-            })
-        } else if ((mainTitle() === greetings && typing() === State.Deleting)
-            || typing() === State.Deleting
-        ) {
-            setMainTitle(
-                greetings.slice(0, mainTitle().length - 1)
-            );
-            if (mainTitle().length <= 2) {
-                setTyping(
-                    State.Typing
-                )
-            }
+        switch (typing()) {
+            case State.Typing:
+                if (mainTitle() !== GREETS) {
+                    setMainTitle(
+                        GREETS.slice(0, mainTitle().length + 1)
+                    );
+                } else {
+                    sleep(2000).then(() => {
+                        setTyping(
+                            State.Deleting
+                        )
+                    })
+                }
+                break;
+            case State.Deleting:
+                setMainTitle(
+                    GREETS.slice(0, mainTitle().length - 1)
+                );
+                if (mainTitle().length <= 1) {
+                    setTyping(
+                        State.Typing
+                    )
+                }
+                break;
         }
-    }, 100);
+    }, INTERVAL);
 
     onCleanup(() => clearInterval(interval));
 
