@@ -1,0 +1,29 @@
+/* MAIN: */
+main {
+  background-color: var(--main-bg);
+}
+
+article {
+  padding: var(--normal-padding);
+}
+
+article > h2 {
+  color: var(--title-color);
+  font-size: var(--big-font-size);
+  padding: var(--small-padding);
+  text-decoration: underline;
+}
+
+article > h3 {
+  color: var(--title-color);
+  font-size: var(--small-font-size);
+  padding: var(--small-padding);
+}
+
+article > p {
+  color: var(--default-color);
+  padding-left: var(--small-padding);
+  margin-right: 50%;
+}
+
+/* @media */

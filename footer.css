@@ -1,0 +1,10 @@
+/* FOOTER: */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: var(--normal-padding);
+  color: var(--default-color);
+}
+
+/* @media */
