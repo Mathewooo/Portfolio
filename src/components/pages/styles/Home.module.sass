@@ -37,9 +37,7 @@
     #{percentage($i * $percent)}
       $top: random(100)
       $bottom: random(100 - $top)
-      $topWithPercent: $top * 1%
-      $bottomWithPercent: $bottom * 1%
-      clip-path: inset(#{$topWithPercent} 0 #{$bottomWithPercent} 0)
+      clip-path: inset(#{$top * 1%} 0 #{$bottom * 1%} 0)
 
 .mainTitle
   color: $title-color
