@@ -1,7 +1,7 @@
-import type {Component} from 'solid-js';
+import type {Component} from 'solid-js'
 import {A} from "@solidjs/router"
 
-import style from '../styles/Header.module.css'
+import style from './styles/Header.module.sass'
 
 const App: Component = () => {
     return (
@@ -10,8 +10,8 @@ const App: Component = () => {
             <nav class={style.list}>
                 <ul>
                     <li><A href="/">Home</A></li>
-                    <li><A href="/about">About</A></li>
-                    <li><A href="/contact">Contact</A></li>
+                    <li><A href="/skills">Skills</A></li>
+                    <li><A href="/projects">Projects</A></li>
                 </ul>
             </nav>
         </header>

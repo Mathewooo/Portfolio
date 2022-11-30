@@ -2,7 +2,7 @@ import type {Component} from 'solid-js';
 import {lazy} from "solid-js";
 import {Routes, Route} from "@solidjs/router"
 
-import Header from './Header'
+import Header from './navigation/Header'
 
 const Home = lazy(() => import("./pages/Home"));
 const Skills = lazy(() => import("./pages/Skills"));
