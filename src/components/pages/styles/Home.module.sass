@@ -5,15 +5,41 @@
   article
     padding: $normal-padding
 
-    h2
-      color: $title-color
-      font-size: $big-font-size
+    .greets
+      padding: $normal-padding
+
+      h2
+        color: $title-color
+        font-size: $big-font-size
+        position: relative
+
+        &:before
+          content: attr(title)
+          position: absolute
+          left: 2px
+          bottom: 2px
+          top: 0
+          text-shadow: -1px 0 red
+          color: white
+          background: black
+          overflow: hidden
+          animation: noise 2s infinite linear alternate-reverse
 
     p
       color: $default-color
       padding-left: $small-padding
       margin-right: 50%
 
+@keyframes noise
+  $steps: 20
+  $percent: calc(1 / $steps)
+  @for $i from 0 through $steps
+    #{percentage($i * $percent)}
+      $top: random(100)
+      $bottom: random(100 - $top)
+      $topWithPercent: $top * 1%
+      $bottomWithPercent: $bottom * 1%
+      clip-path: inset(#{$topWithPercent} 0 #{$bottomWithPercent} 0)
 
 .mainTitle
   color: $title-color

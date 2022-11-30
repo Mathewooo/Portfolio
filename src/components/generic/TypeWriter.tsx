@@ -2,9 +2,9 @@ import {createSignal, onCleanup} from "solid-js"
 import {styled} from "solid-styled-components"
 
 interface TypeWrite {
-    GREETS: string;
-    INTERVAL: number;
-    DELETION_DELAY: number;
+    GREETS: string
+    INTERVAL: number
+    DELETION_DELAY: number
 }
 
 const Title = styled("h2")`
@@ -33,7 +33,7 @@ const TypeWriter = (props: TypeWrite) => {
     const [mainTitle, setMainTitle] = createSignal('')
     const [typing, setTyping] = createSignal(
         State.Typing
-    );
+    )
 
     function titleLength(): number {
         return mainTitle().length
@@ -47,7 +47,7 @@ const TypeWriter = (props: TypeWrite) => {
                         props.GREETS.slice(
                             0, titleLength() + 1
                         )
-                    );
+                    )
                 } else {
                     new Promise(
                         (resolve) => setTimeout(
@@ -57,27 +57,27 @@ const TypeWriter = (props: TypeWrite) => {
                         setTyping(
                             State.Deleting
                         )
-                    );
+                    )
                 }
-                break;
+                break
             case State.Deleting:
                 if (titleLength() != 0) {
                     setMainTitle(
                         props.GREETS.slice(
                             0, titleLength() - 1
                         )
-                    );
+                    )
                 } else setTyping(
                     State.Typing
                 )
-                break;
+                break
         }
-    }, props.INTERVAL);
+    }, props.INTERVAL)
 
-    onCleanup(() => clearInterval(interval));
+    onCleanup(() => clearInterval(interval))
 
     return (
-        <Title>
+        <Title title={mainTitle()}>
             {mainTitle()}
         </Title>
     );
