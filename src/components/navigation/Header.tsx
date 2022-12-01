@@ -31,7 +31,7 @@ const App: Component = () => {
     };
 
     const handleMenu = () => setActive(
-        !active
+        !active()
     )
 
     return (
@@ -57,9 +57,9 @@ const App: Component = () => {
                         active: active(),
                         menu: true
                     }} onClick={handleMenu}>
-                        <div/>
-                        <div/>
-                        <div/>
+                        <div>
+                            <span/>
+                        </div>
                     </div>
                 </Show>
             </nav>
