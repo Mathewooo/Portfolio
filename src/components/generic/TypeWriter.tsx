@@ -77,9 +77,7 @@ const TypeWriter = (props: TypeWrite) => {
     onCleanup(() => clearInterval(interval))
 
     return (
-        <Title title={mainTitle()}>
-            {mainTitle()}
-        </Title>
+        <Title textContent={mainTitle()} title={mainTitle()} />
     );
 };
 

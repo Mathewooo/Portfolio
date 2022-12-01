@@ -1,0 +1,75 @@
+@import "../../../init/vars"
+
+/* HEADER: */
+.navigation
+  display: flex
+  justify-content: space-around
+  align-items: center
+  background-color: $nav-bg
+
+  h1
+    font-size: $big-font-size
+    color: $logo-color
+    padding: $normal-padding
+    font-weight: $bolder
+
+.list
+  display: inline-flex
+  list-style-type: none
+  padding: $normal-padding
+
+  li
+    padding: $small-padding
+
+  a
+    text-decoration: none
+    font-size: $normal-font-size
+    color: $link-color
+
+.mobileList
+  list-style-type: none
+  display: none
+
+.menu
+  display: block
+  width: 45px
+  height: 45px
+  cursor: pointer
+
+  div
+    position: relative
+    top: 0
+    height: 5px
+    background-color: #fff
+    margin-bottom: 10px
+    transition: 0.3s ease transform, 0.3s ease top, 0.3s ease width, 0.3s ease right
+    border-radius: 1px
+
+    &:first-child
+      transform-origin: 0
+
+    &:last-child
+      margin-bottom: 0
+      transform-origin: 60px
+
+    &:nth-child(2)
+      right: 0
+
+.active > div:before
+  background-color: #4caf50
+
+.active > div:first-child
+  top: -6px
+  transform: rotateZ(45deg)
+
+.active > div:last-child
+  top: 6px
+  transform: rotateZ(45deg)
+
+.active > div:nth-child(2)
+  width: 85px
+  top: 0
+  right: 13px
+  transform: rotateZ(-45deg)
+
+/* @media */
