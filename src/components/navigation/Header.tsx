@@ -11,7 +11,7 @@ const LINKS: [string, string][] = [
     ["/projects", "Projects"],
 ]
 
-const pixelsUntilChange: number = 800;
+const pixelsUntilChange: number = 650;
 
 const App: Component = () => {
     const checkWindowSize = (): boolean => {
