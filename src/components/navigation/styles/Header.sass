@@ -1,75 +1,94 @@
 @import "../../../init/vars"
 
+$menu-color: white
+$menu-size: 32px
+$mobile: 700px
+
 /* HEADER: */
-.navigation
-  display: flex
-  justify-content: space-around
-  align-items: center
-  background-color: $nav-bg
 
-  h1
-    font-size: $big-font-size
-    color: $logo-color
-    padding: $normal-padding
-    font-weight: $bolder
+@mixin anchor()
+  text-decoration: none
+  font-size: $tiny-font-size
+  color: $link-color
 
-.list
-  display: inline-flex
+@mixin list()
   list-style-type: none
-  padding: $normal-padding
+  padding: $small-padding
 
   li
     padding: $small-padding
 
   a
-    text-decoration: none
-    font-size: $normal-font-size
-    color: $link-color
+    @include anchor
+
+@keyframes mobileList
+  0%
+    opacity: 0
+  100%
+    opacity: 100%
+
+.navigation
+  background-color: $nav-bg
+
+  section
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: $huge-padding
+
+    h1
+      font-size: $normal-font-size
+      color: $logo-color
+      font-weight: $bolder
+
+.list
+  display: inline-flex
+  @include list
 
 .mobileList
-  list-style-type: none
-  display: none
+  @include list
 
-$size: 40px
-$color: white
+.listAnim
+  animation: 0.5s mobileList ease-in-out
+
+/* MENU: */
 
 @mixin pill()
   content: ''
   position: absolute
   width: 100%
   height: 12%
-  background: $color
-  border-radius: $size
+  background: $menu-color
+  border-radius: $menu-size
   transition: all .5s cubic-bezier(.1, .9, 0, 1.2)
 
 .menu
   position: relative
-  width: $size
-  height: $size
+  width: $menu-size
+  height: $menu-size
+  cursor: pointer
 
-  div
-    &:before
-      @include pill()
-      top: 10%
-      right: 0
+  &:before
+    @include pill
+    top: 10%
+    right: 0
 
+  &:after
+    @include pill
+    bottom: 10%
+    left: 0
 
-    &:after
-      @include pill()
-      bottom: 10%
-      left: 0
+  span
+    position: absolute
+    display: flex
+    align-items: center
+    height: $menu-size
+    width: $menu-size
 
-    span
-      position: absolute
-      display: flex
-      align-items: center
-      height: $size
-      width: $size
+    &:before, &:after
+      @include pill
 
-      &:before, &:after
-        @include pill()
-
-.active div
+.active
   &:before, &:after
     width: 0
 
@@ -79,7 +98,15 @@ $color: white
 
     &:after
       transform: rotate(45deg)
-      box-shadow: 0 0 0 0 lighten($color, 35)
-
+      box-shadow: 0 0 0 0 lighten($menu-color, 35)
 
 /* @media */
+
+@media (min-width: $mobile)
+  .navigation
+    section
+      justify-content: space-around
+      padding: $tiny-padding
+
+      h1
+        font-size: $big-font-size
