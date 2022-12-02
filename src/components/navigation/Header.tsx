@@ -8,7 +8,7 @@ const TITLE: string = "Matt."
 const LINKS: [string, string][] = [
     ["/", "Home"],
     ["/skills", "Skills"],
-    ["/projects", "Projects"],
+    ["/projects", "Projects"]
 ]
 
 const pixelsUntilChange: number = 700
@@ -39,7 +39,7 @@ const App: Component = () => {
         !active()
     )
 
-    function returnLinks(
+    function getLinks(
         mobile: boolean
     ): JSX.Element {
         return (
@@ -68,7 +68,7 @@ const App: Component = () => {
                     <Show when={
                         !canChange()
                     } keyed>
-                        {returnLinks(false)}
+                        {getLinks(false)}
                     </Show>
                     <Show when={canChange()} keyed>
                         <div classList={{
@@ -83,7 +83,7 @@ const App: Component = () => {
             <Show when={
                 canChange() && active()
             } keyed>
-                {returnLinks(true)}
+                {getLinks(true)}
             </Show>
         </header>
     )
