@@ -8,6 +8,8 @@ const Home = lazy(() => import("./pages/Home"));
 const Skills = lazy(() => import("./pages/Skills"));
 const Projects = lazy(() => import("./pages/Projects"));
 
+//TODO make default component using tag `main` with optional centering (taking up 100% height)
+
 const App: Component = () => {
     return <>
         <Header/>

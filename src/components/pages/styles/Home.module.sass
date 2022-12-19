@@ -1,34 +1,127 @@
 @import "../../../init/vars"
 
 /* MAIN: */
-.home
-  article
+.row
+  max-width: $grid-width
+  margin: 0 auto
+
+  &::after
+    content: ""
+    display: table
+    clear: both
+
+  &:not(:last-child)
+    margin-bottom: $gutter-vertical
+
+  .col
+    float: left
+    padding: 1rem
+    width: calc((100% - #{$gutter-horizontal}) / 2)
+
+    &:not(:last-child)
+      margin-right: $gutter-horizontal
+
+article
+
+  h1
+    padding: $small-padding
+    color: $default-color
+    font-size: $normal-font-size
+    position: relative
+
+  .greets
     padding: $normal-padding
 
-    .greets
-      padding: $normal-padding
+    h2
+      color: white
+      font-size: $huge-font-size
+      position: relative
 
-      h2
+      &:before
+        content: attr(title)
+        position: absolute
+        left: 2px
+        bottom: 3px
+        top: 0
+        text-shadow: -1px 0 red
         color: white
-        font-size: $big-font-size
-        position: relative
+        background: black
+        overflow: hidden
+        animation: noise 1.2s infinite linear alternate-reverse
 
-        &:before
-          content: attr(title)
-          position: absolute
-          left: 2px
-          bottom: 3px
-          top: 0
-          text-shadow: -1px 0 red
-          color: white
-          background: black
-          overflow: hidden
-          animation: noise 1.2s infinite linear alternate-reverse
+  p
+    color: $default-color
+    padding-left: $normal-padding
 
-    p
-      color: $default-color
-      padding-left: $small-padding
-      margin-right: 50%
+.mainTitle
+  color: $title-color
+  font-size: $big-font-size
+  padding: $small-padding
+  text-decoration: underline
+
+/* @keyframes */
+@keyframes orbit
+  0%
+    top: 10px
+    opacity: 1
+    transform: rotate(0deg) scale(1)
+
+  50%
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1)
+    top: -10px
+    opacity: 0.3
+    transform: rotate(180deg) scale(1.5)
+
+  100%
+    top: 10px
+    opacity: 1
+    transform: rotate(360deg) scale(1)
+
+@keyframes topDown
+  0%
+    top: 0
+    transform: rotate(0deg) scale(1)
+
+  50%
+    top: 10px
+    transform: rotate(180deg) scale(1.04)
+
+  100%
+    top: 0
+    transform: rotate(360deg) scale(1)
+
+@keyframes left
+  0%
+    top: 0
+    transform: rotate(0deg) scale(1.05)
+
+  50%
+    top: 10px
+    transform: rotate(180deg) scale(1)
+
+  100%
+    top: 0
+    transform: rotate(360deg) scale(1.05)
+
+@keyframes right
+  0%
+    top: -10px
+    transform: rotate(0deg) scale(1)
+
+  50%
+    top: 0
+    transform: rotate(180deg) scale(1.02)
+
+  100%
+    top: -10px
+    transform: rotate(360deg)
+
+@-webkit-keyframes turn
+  0%
+    transform: rotate(0deg) skewX(0deg)
+
+  100%
+    transform: rotate(-360deg) skewX(0deg)
 
 @keyframes noise
   $steps: 20
@@ -38,11 +131,5 @@
       $top: random(100)
       $bottom: random(100 - $top)
       clip-path: inset(#{$top * 1%} 0 #{$bottom * 1%} 0)
-
-.mainTitle
-  color: $title-color
-  font-size: $big-font-size
-  padding: $small-padding
-  text-decoration: underline
 
 /* @media */

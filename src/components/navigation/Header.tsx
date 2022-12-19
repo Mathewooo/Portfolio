@@ -5,10 +5,11 @@ import './styles/Header.sass'
 
 const TITLE: string = "Matt."
 
-const LINKS: [string, string][] = [
-    ["/", "Home"],
-    ["/skills", "Skills"],
-    ["/projects", "Projects"]
+const LINKS: [string, string, boolean][] = [
+    ["/", "Home", false],
+    ["/skills", "Skills", false],
+    ["/projects", "Projects", false],
+    ["/", "Let's Connect!", true]
 ]
 
 const pixelsUntilChange: number = 700
@@ -49,7 +50,9 @@ const App: Component = () => {
             }}>
                 <For each={LINKS}>
                     {(link) => (
-                        <li>
+                            <li classList={{
+                                social: link[2],
+                            }}>
                             <A href={link[0]}>{
                                 link[1]
                             }</A>
