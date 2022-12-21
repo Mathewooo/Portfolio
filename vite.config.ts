@@ -8,8 +8,10 @@ export default defineConfig({
     },
     build: {
         target: 'esnext',
-    },
-    optimizeDeps: {
-        include: ["@solid-primitives/media"]
+        rollupOptions: {
+            external: [
+                "@solid-primitives/media",
+            ],
+        },
     },
 });
