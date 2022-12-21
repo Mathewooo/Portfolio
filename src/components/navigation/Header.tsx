@@ -1,7 +1,6 @@
 import type {Component} from 'solid-js'
 import {createSignal, Show, For, JSX} from 'solid-js'
 import {A} from "@solidjs/router"
-import {makeMediaQueryListener, createMediaQuery} from "@solid-primitives/media";
 import './styles/Header.sass'
 
 const TITLE: string = "Matt."
@@ -16,25 +15,30 @@ const LINKS: [string, string, boolean][] = [
 const pixelsUntilChange: number = 700
 
 const Header: Component = () => {
-    const breakPoint = createMediaQuery(
-        `(max-width: ${pixelsUntilChange}px)`
-    )
-
-    const change = makeMediaQueryListener(
-        `(max-width: ${pixelsUntilChange}px)`, e => {
-            console.log(e.matches);
-            if (active()) {
-                setActive(!active())
-            }
-        })
+    const checkWindowSize = (): boolean => {
+        return window.innerWidth
+            < pixelsUntilChange;
+    }
 
     const [active, setActive] = createSignal(false)
+    const [canChange, setCanChange] = createSignal(
+        checkWindowSize()
+    )
+
+    onresize = () => {
+        const isMobile: boolean =
+            checkWindowSize()
+        setCanChange(
+            isMobile
+        )
+        if (active() && !isMobile) {
+            setActive(!active())
+        }
+    }
 
     const handleMenu = () => setActive(
         !active()
     )
-
-    change()
 
     function getLinks(
         mobile: boolean
@@ -65,11 +69,11 @@ const Header: Component = () => {
                 <h1>{TITLE.toUpperCase()}</h1>
                 <nav>
                     <Show when={
-                        !breakPoint()
+                        !canChange()
                     } keyed>
                         {getLinks(false)}
                     </Show>
-                    <Show when={breakPoint()} keyed>
+                    <Show when={canChange()} keyed>
                         <div classList={{
                             active: active(),
                             menu: true
@@ -80,7 +84,7 @@ const Header: Component = () => {
                 </nav>
             </section>
             <Show when={
-                breakPoint() && active()
+                canChange() && active()
             } keyed>
                 {getLinks(true)}
             </Show>
