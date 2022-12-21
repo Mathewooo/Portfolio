@@ -1,0 +1,42 @@
+$cover-color: #2C2546
+$layers: 6
+
+.background
+  overflow-x: hidden
+  overflow-y: auto
+  perspective: 100px
+  height: 100vh
+  z-index: -1
+
+  .layer
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    image-rendering: pixelated
+    background-position: center top
+    background-size: cover
+
+.cover
+  background: $cover-color
+  display: block
+  position: absolute
+  top: 100%
+  left: 0
+  right: 0
+  height: 100vh
+
+@for $i from 0 through $layers
+  $x: calc(($layers - $i) / 2)
+  .layer_#{$i}
+    transform: translateZ(#{-100 * $x}px) scale($x + 1)
+
+/* @media */
+
+$breakpoint: 1180px
+
+@media (min-width: $breakpoint)
+  .layer
+    background-size: contain !important

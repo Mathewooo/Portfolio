@@ -1,6 +1,7 @@
 import type {Component} from 'solid-js'
 import {createSignal, Show, For, JSX} from 'solid-js'
 import {A} from "@solidjs/router"
+import {makeMediaQueryListener, createMediaQuery} from "@solid-primitives/media";
 import './styles/Header.sass'
 
 const TITLE: string = "Matt."
@@ -14,31 +15,26 @@ const LINKS: [string, string, boolean][] = [
 
 const pixelsUntilChange: number = 700
 
-const App: Component = () => {
-    const checkWindowSize = (): boolean => {
-        return window.innerWidth
-            < pixelsUntilChange;
-    }
-
-    const [active, setActive] = createSignal(false)
-    const [canChange, setCanChange] = createSignal(
-        checkWindowSize()
+const Header: Component = () => {
+    const breakPoint = createMediaQuery(
+        `(max-width: ${pixelsUntilChange}px)`
     )
 
-    onresize = () => {
-        const isMobile: boolean =
-            checkWindowSize()
-        setCanChange(
-            isMobile
-        )
-        if (active() && !isMobile) {
-            setActive(!active())
-        }
-    }
+    const change = makeMediaQueryListener(
+        `(max-width: ${pixelsUntilChange}px)`, e => {
+            console.log(e.matches);
+            if (active()) {
+                setActive(!active())
+            }
+        })
+
+    const [active, setActive] = createSignal(false)
 
     const handleMenu = () => setActive(
         !active()
     )
+
+    change()
 
     function getLinks(
         mobile: boolean
@@ -50,9 +46,9 @@ const App: Component = () => {
             }}>
                 <For each={LINKS}>
                     {(link) => (
-                            <li classList={{
-                                social: link[2],
-                            }}>
+                        <li classList={{
+                            social: link[2],
+                        }}>
                             <A href={link[0]}>{
                                 link[1]
                             }</A>
@@ -69,11 +65,11 @@ const App: Component = () => {
                 <h1>{TITLE.toUpperCase()}</h1>
                 <nav>
                     <Show when={
-                        !canChange()
+                        !breakPoint()
                     } keyed>
                         {getLinks(false)}
                     </Show>
-                    <Show when={canChange()} keyed>
+                    <Show when={breakPoint()} keyed>
                         <div classList={{
                             active: active(),
                             menu: true
@@ -84,7 +80,7 @@ const App: Component = () => {
                 </nav>
             </section>
             <Show when={
-                canChange() && active()
+                breakPoint() && active()
             } keyed>
                 {getLinks(true)}
             </Show>
@@ -92,4 +88,4 @@ const App: Component = () => {
     )
 }
 
-export default App;
+export default Header

@@ -1,39 +1,55 @@
-import {For, JSX} from 'solid-js'
-import FarClouds from "../../assets/background/layers/far-clouds.png"
-import FarMountains from "../../assets/background/layers/far-mountains.png"
-import Mountains from "../../assets/background/layers/mountains.png"
-import NearClouds from "../../assets/background/layers/near-clouds.png"
-import Sky from "../../assets/background/layers/sky.png"
-import Trees from "../../assets/background/layers/trees.png"
+import {For, JSX, Component} from 'solid-js'
 
-import style from "./styles/Background.module.sass"
+import FarClouds from "../../assets/layers/far-clouds.png"
+import FarMountains from "../../assets/layers/far-mountains.png"
+import Mountains from "../../assets/layers/mountains.png"
+import NearClouds from "../../assets/layers/near-clouds.png"
+import Sky from "../../assets/layers/sky.png"
+import Trees from "../../assets/layers/trees.png"
 
-const Background = () => {
-    const LAYERS: string[] = [
-        FarClouds,
-        FarMountains,
-        Mountains,
-        NearClouds,
-        Sky,
-        Trees
+import "./styles/Background.sass"
+
+interface Background {
+    ARTICLE: Component,
+    CONTENT: Component
+}
+
+const Background = (props: Background) => {
+    const LAYERS: [string, number][] = [
+        [Sky, -6],
+        [FarClouds, -5],
+        [NearClouds, -4],
+        [FarMountains, -3],
+        [Mountains, -2],
+        [Trees, -1]
     ]
 
     function getLayers(): JSX.Element {
         return (
             <For each={LAYERS}>
-                {(layer) => (
-                    <div class={style.layer}>
-                        <img src={layer}/>
-                    </div>
+                {(layer, i) => (
+                    <div class={
+                        `layer ${"layer_" + (i() + 1)}`
+                    } style={{
+                        "background-image": `url('${layer[0]}')`,
+                        "z-index": `${layer[1] - 1}`
+                    }}/>
                 )}
             </For>
         )
     }
 
+    const Article = props.ARTICLE,
+        Content = props.CONTENT
+
     return (
-        <div class={style.background}>
+        <main class="background">
             {getLayers()}
-        </div>
+            <Article/>
+            <div class="cover">
+                <Content/>
+            </div>
+        </main>
     );
 };
 

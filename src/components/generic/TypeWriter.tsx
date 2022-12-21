@@ -78,7 +78,7 @@ const TypeWriter = (props: TypeWrite) => {
 
     return (
         <Title textContent={mainTitle()} title={mainTitle()} />
-    );
-};
+    )
+}
 
-export default TypeWriter;
+export default TypeWriter
