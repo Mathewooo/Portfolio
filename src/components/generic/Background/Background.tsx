@@ -1,13 +1,9 @@
 import {For, JSX, Component} from 'solid-js'
-
-import FarClouds from "../../assets/layers/far-clouds.png"
-import FarMountains from "../../assets/layers/far-mountains.png"
-import Mountains from "../../assets/layers/mountains.png"
-import NearClouds from "../../assets/layers/near-clouds.png"
-import Sky from "../../assets/layers/sky.png"
-import Trees from "../../assets/layers/trees.png"
-
-import "./styles/Background.sass"
+import {
+    FarClouds, FarMountains, Mountains,
+    NearClouds, Sky, Trees
+} from "../../../assets/background/Background";
+import "./Background.sass"
 
 interface Background {
     ARTICLE: Component,

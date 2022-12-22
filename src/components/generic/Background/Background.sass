@@ -21,12 +21,11 @@ $layers: 6
 
 .cover
   background: $cover-color
-  display: block
   position: absolute
   top: 100%
   left: 0
   right: 0
-  height: 100vh
+  min-height: 50vh
 
 @for $i from 0 through $layers
   $x: calc(($layers - $i) / 2)
@@ -35,7 +34,7 @@ $layers: 6
 
 /* @media */
 
-$breakpoint: 1180px
+$breakpoint: 950px
 
 @media (min-width: $breakpoint)
   .layer

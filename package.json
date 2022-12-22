@@ -15,6 +15,7 @@
     "vite-plugin-solid": "^2.4.0"
   },
   "dependencies": {
+    "@solid-primitives/event-listener": "^2.2.4",
     "@solidjs/router": "^0.5.1",
     "sass": "^1.56.1",
     "solid-js": "^1.6.2",

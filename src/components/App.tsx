@@ -2,10 +2,10 @@ import type {Component} from 'solid-js'
 import {lazy} from "solid-js"
 import {Routes, Route} from "@solidjs/router"
 
-import Header from './navigation/Header'
-import Footer from "./navigation/Footer"
+import Header from './generic/Header/Header'
+import Footer from "./generic/Footer/Footer"
 
-const Home = lazy(() => import("./pages/Home"))
+const Home = lazy(() => import("./pages/Home/Home"))
 const Skills = lazy(() => import("./pages/Skills"))
 const Projects = lazy(() => import("./pages/Projects"))
 

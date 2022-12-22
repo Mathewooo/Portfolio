@@ -1,7 +1,8 @@
 import type {Component} from 'solid-js'
 import {createSignal, Show, For, JSX} from 'solid-js'
+import {WindowEventListener} from "@solid-primitives/event-listener";
 import {A} from "@solidjs/router"
-import './styles/Header.sass'
+import './Header.sass'
 
 const TITLE: string = "Matt."
 
@@ -12,39 +13,39 @@ const LINKS: [string, string, boolean][] = [
     ["/", "Let's Connect!", true]
 ]
 
-const pixelsUntilChange: number = 700
+const pixelsUntilChange: number = 720
 
 const Header: Component = () => {
-    const checkWindowSize = (): boolean => {
+    const breakPoint = (): boolean => {
         return window.innerWidth
-            < pixelsUntilChange;
-    }
-
-    const [active, setActive] = createSignal(false)
-    const [canChange, setCanChange] = createSignal(
-        checkWindowSize()
-    )
-
-    onresize = () => {
-        const isMobile: boolean =
-            checkWindowSize()
-        setCanChange(
-            isMobile
-        )
-        if (active() && !isMobile) {
-            setActive(!active())
-        }
+            <= pixelsUntilChange;
     }
 
     const handleMenu = () => setActive(
         !active()
     )
 
+    const [active, setActive] = createSignal(false)
+    const [canChange, setCanChange] = createSignal(
+        breakPoint()
+    )
+
+    const listener = (): JSX.Element => {
+        return <WindowEventListener onResize={
+            () => {
+                setCanChange(breakPoint)
+                if (!breakPoint && active()) {
+                    setActive(!active())
+                }
+            }
+        }/>
+    }
+
     function getLinks(
         mobile: boolean
     ): JSX.Element {
         return (
-            <ul classList={{
+            <menu classList={{
                 list: !mobile,
                 mobileList: mobile, listAnim: mobile
             }}>
@@ -59,11 +60,12 @@ const Header: Component = () => {
                         </li>
                     )}
                 </For>
-            </ul>
+            </menu>
         )
     }
 
-    return (
+    return <>
+        {listener()}
         <header class='navigation'>
             <section>
                 <h1>{TITLE.toUpperCase()}</h1>
@@ -89,7 +91,7 @@ const Header: Component = () => {
                 {getLinks(true)}
             </Show>
         </header>
-    )
+    </>
 }
 
 export default Header
