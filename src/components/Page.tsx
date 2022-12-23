@@ -1,7 +1,7 @@
 import type {Component, JSX} from 'solid-js'
-import Background from "./generic/Background/Background"
+import Background from "~/components/generic/Background/Background"
 
-export abstract class Page {
+export default abstract class Page {
     abstract article: Component
     abstract content: Component
 

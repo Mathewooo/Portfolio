@@ -1,7 +1,6 @@
-import type {Component} from 'solid-js'
-import {createSignal, Show, For, JSX} from 'solid-js'
+import {createSignal, Show, For, JSX, onMount} from 'solid-js'
+import {A} from "solid-start"
 import {WindowEventListener} from "@solid-primitives/event-listener";
-import {A} from "@solidjs/router"
 import './Header.sass'
 
 const TITLE: string = "Matt."
@@ -15,7 +14,7 @@ const LINKS: [string, string, boolean][] = [
 
 const pixelsUntilChange: number = 720
 
-const Header: Component = () => {
+export default function Header() {
     const breakPoint = (): boolean => {
         return window.innerWidth
             <= pixelsUntilChange;
@@ -26,9 +25,7 @@ const Header: Component = () => {
     )
 
     const [active, setActive] = createSignal(false)
-    const [canChange, setCanChange] = createSignal(
-        breakPoint()
-    )
+    const [canChange, setCanChange] = createSignal()
 
     const listener = (): JSX.Element => {
         return <WindowEventListener onResize={
@@ -94,4 +91,3 @@ const Header: Component = () => {
     </>
 }
 
-export default Header

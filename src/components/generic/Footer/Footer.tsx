@@ -1,11 +1,7 @@
-import {Component} from "solid-js";
-
-const Footer: Component = () => {
+export default function Footer() {
     return (
         <footer>
 
         </footer>
     )
 }
-
-export default Footer

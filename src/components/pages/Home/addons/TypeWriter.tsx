@@ -24,7 +24,7 @@ const Title = styled("h2")`
     }
 `;
 
-const TypeWriter = (props: TypeWrite) => {
+export default function TypeWriter(props: TypeWrite) {
     enum State {
         Typing,
         Deleting
@@ -39,7 +39,7 @@ const TypeWriter = (props: TypeWrite) => {
         return mainTitle().length
     }
 
-    const interval: number = setInterval(() => {
+    const interval: number = setInterval(async () => {
         switch (typing()) {
             case State.Typing:
                 if (mainTitle() !== props.GREETS) {
@@ -77,8 +77,9 @@ const TypeWriter = (props: TypeWrite) => {
     onCleanup(() => clearInterval(interval))
 
     return (
-        <Title textContent={mainTitle()} title={mainTitle()} />
+        <Title
+            textContent={mainTitle()}
+            title={mainTitle()}
+        />
     )
 }
-
-export default TypeWriter

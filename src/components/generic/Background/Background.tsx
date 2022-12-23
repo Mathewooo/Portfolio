@@ -2,7 +2,7 @@ import {For, JSX, Component} from 'solid-js'
 import {
     FarClouds, FarMountains, Mountains,
     NearClouds, Sky, Trees
-} from "../../../assets/background/Background";
+} from "~/assets/background/Background";
 import "./Background.sass"
 
 interface Background {
@@ -10,7 +10,7 @@ interface Background {
     CONTENT: Component
 }
 
-const Background = (props: Background) => {
+export default function Background(props: Background) {
     const LAYERS: [string, number][] = [
         [Sky, -6],
         [FarClouds, -5],
@@ -48,5 +48,3 @@ const Background = (props: Background) => {
         </main>
     );
 };
-
-export default Background
