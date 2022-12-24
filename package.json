@@ -2,24 +2,24 @@
     "name": "Portfolio",
     "scripts": {
         "dev": "solid-start dev",
-        "build": "solid-start build",
+        "build": "solid-start build --output dist",
         "start": "solid-start start"
     },
     "type": "module",
     "devDependencies": {
-        "solid-start-node": "^0.2.0",
-        "typescript": "^4.8.4",
-        "vite": "^3.1.8"
+        "solid-start-node": "^0.2.8",
+        "typescript": "^4.9.4",
+        "vite": "^3.2.5"
     },
     "dependencies": {
         "@solid-primitives/event-listener": "^2.2.4",
-        "@solidjs/meta": "^0.28.0",
+        "@solidjs/meta": "^0.28.2",
         "@solidjs/router": "^0.6.0",
         "sass": "^1.57.1",
-        "solid-js": "^1.6.2",
-        "solid-start": "^0.2.0",
+        "solid-js": "^1.6.6",
+        "solid-start": "^0.2.8",
         "solid-styled-components": "^0.28.5",
-        "undici": "^5.11.0"
+        "undici": "^5.14.0"
     },
     "engines": {
         "node": ">=16.8"
