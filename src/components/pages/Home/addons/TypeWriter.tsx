@@ -7,7 +7,7 @@ interface TypeWrite {
     DELETION_DELAY: number
 }
 
-const Title = styled("h2")`
+const Title = styled.h2`
     &::after {
         content: "|";
         animation: blink 1s step-end infinite;

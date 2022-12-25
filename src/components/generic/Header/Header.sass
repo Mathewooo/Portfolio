@@ -36,13 +36,16 @@ $mobile: 700px
     opacity: 100%
 
 .navigation
+  position: sticky
   background-color: $nav-bg
+
+  nav
+    padding: 0 $big-padding
 
   section
     display: flex
     justify-content: space-between
     align-items: center
-    padding: $small-padding
 
     h1
       font-size: $normal-font-size
@@ -106,7 +109,6 @@ $mobile: 700px
 
     &:after
       transform: rotate(45deg)
-      box-shadow: 0 0 0 0 lighten($menu-color, 35)
 
 /* @media */
 
@@ -114,7 +116,6 @@ $mobile: 700px
   .navigation
     section
       justify-content: space-around
-      padding: $tiny-padding
 
       h1
-        font-size: $big-font-size
+        font-size: $mid-font-size

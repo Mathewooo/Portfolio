@@ -3,36 +3,33 @@
 
 /* MAIN: */
 img
-  width: 10rem
+  width: 11rem
   image-rendering: pixelated
   filter: drop-shadow(40px 40px 0 rgba(17, 12, 46, 0.15))
 
 .container
   display: inline-grid
-  grid-template-columns: 1fr
-  grid-template-rows: min-content 1fr 1fr min-content
-  grid-row-gap: 3rem
-  padding: $box-small-padding
+  grid-template-rows: 1fr 1fr
+  grid-row-gap: 2.5rem
+  padding: $box-tiny-padding
 
   .item
     place-self: center
 
 article
   section
-    padding-left: $big-padding
-
     span
-      border-left: 5px solid #00CC8F
-      color: $default-color
-      font-size: $big-font-size
-      position: relative
-      padding: 0.2em 0.5em
-      text-transform: uppercase
+      border-left: 4px solid #00CC8F
+      font-size: $ab-normal-font-size
+      font-weight: $bolder
+      padding: 0.4em 0.5em
+      letter-spacing: 0.02em
 
     .greets
       h2
         color: white
-        font-size: $huge-font-size
+        font-size: $big-font-size
+        font-weight: $bolder
         position: relative
 
         &:before
@@ -41,20 +38,22 @@ article
           left: 2px
           bottom: 3px
           top: 0
-          text-shadow: -2px 0 darken(orange, 1)
+          text-shadow: -2.5px 0 darken(orange, 1)
           color: white
           background: black
           overflow: hidden
           animation: noise 1.1s infinite linear alternate-reverse
 
-      p
-        color: $default-color
+    p
+      font-size: $very-tiny-font-size
 
 .mainTitle
   color: $title-color
   font-size: $big-font-size
   padding: $small-padding
   text-decoration: underline
+
+/* @keyframes */
 
 @keyframes noise
   $steps: 20
@@ -73,4 +72,20 @@ article
   .container
     grid-template-columns: 1fr 1fr
     padding: $box-big-padding
+
+@media (min-width: 1000px)
+  article
+    section
+      padding-left: $big-padding
+
+      span
+        border-left: 5px solid #00CC8F
+        font-size: $mid-font-size
+
+      .greets
+        h2
+          font-size: $huge-font-size
+
+      p
+        font-size: $tiny-font-size
 

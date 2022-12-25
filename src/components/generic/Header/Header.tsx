@@ -1,4 +1,4 @@
-import {createSignal, Show, For, JSX, onMount} from 'solid-js'
+import {createSignal, Show, For, JSX} from 'solid-js'
 import {A} from "solid-start"
 import {WindowEventListener} from "@solid-primitives/event-listener";
 import './Header.sass'
@@ -12,7 +12,7 @@ const LINKS: [string, string, boolean][] = [
     ["/", "Let's Connect!", true]
 ]
 
-const pixelsUntilChange: number = 720
+const pixelsUntilChange: number = 700
 
 export default function Header() {
     const breakPoint = (): boolean => {
@@ -25,7 +25,9 @@ export default function Header() {
     )
 
     const [active, setActive] = createSignal(false)
-    const [canChange, setCanChange] = createSignal()
+    const [canChange, setCanChange] = createSignal(
+        breakPoint()
+    )
 
     const listener = (): JSX.Element => {
         return <WindowEventListener onResize={
@@ -64,9 +66,9 @@ export default function Header() {
     return <>
         {listener()}
         <header class='navigation'>
-            <section>
-                <h1>{TITLE.toUpperCase()}</h1>
-                <nav>
+            <nav>
+                <section>
+                    <h1>{TITLE.toUpperCase()}</h1>
                     <Show when={
                         !canChange()
                     } keyed>
@@ -80,8 +82,8 @@ export default function Header() {
                             <span/>
                         </div>
                     </Show>
-                </nav>
-            </section>
+                </section>
+            </nav>
             <Show when={
                 canChange() && active()
             } keyed>
