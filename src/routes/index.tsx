@@ -33,7 +33,7 @@ class Home extends Page {
 
     content = () => {
         return (
-            <article>
+            <article class={Content.container}>
                 <section>
                     <h2>Something about me</h2>
                 </section>
