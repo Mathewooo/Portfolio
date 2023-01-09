@@ -2,11 +2,11 @@ $cover-color: #2C2546
 $layers: 6
 
 .background
-  overflow-x: hidden
+  display: flex
+  align-items: center
   overflow-y: auto
   perspective: 100px
-  height: 100vh
-  z-index: -1
+  min-height: 100vh
 
   .layer
     display: block
@@ -15,7 +15,6 @@ $layers: 6
     right: 0
     bottom: 0
     left: 0
-    image-rendering: pixelated
     background-position: center top
     background-size: cover
 
@@ -25,7 +24,7 @@ $layers: 6
   top: 100%
   left: 0
   right: 0
-  min-height: 50vh
+  min-height: 30vh
 
 @for $i from 0 through $layers
   $x: calc(($layers - $i) / 2)

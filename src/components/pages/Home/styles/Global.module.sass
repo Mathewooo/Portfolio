@@ -1,0 +1,15 @@
+@mixin container($breakpoint, $firstPadding, $secondPadding)
+  .container
+    display: inline-grid
+    grid-template-rows: 1fr 1fr
+    grid-row-gap: 2.5rem
+    padding: $firstPadding
+    width: 100%
+
+    .item
+      place-self: center
+
+  @media (min-width: $breakpoint)
+    .container
+      grid-template-columns: 1fr 1fr
+      padding: $secondPadding

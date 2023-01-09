@@ -2,7 +2,7 @@ import {styled} from "solid-styled-components"
 
 const Paragraph = (props: any) => {
     const backdrop_blur: string
-        = "backdrop-filter: blur(0.12em) saturate(70%);"
+        = "backdrop-filter: blur(0.15em) saturate(70%);"
 
     const Paragraph = styled.p`
         color: white;

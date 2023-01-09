@@ -1,9 +1,63 @@
 @import "src/init/vars"
+@import "src/components/pages/Home/styles/Global.module"
 
-.container
-  section
-    h2
-      color: white
-      font-size: $normal-font-size
-      font-weight: $bolder
-      padding: $small-padding
+/* Main: */
+
+@include container(1100px, 0, $box-tiny-padding)
+
+article
+  padding: $box-tiny-padding
+
+  .title
+    color: white
+    font-size: $normal-font-size
+    font-weight: $bolder
+    text-transform: uppercase
+
+.interests
+  h2
+    font-size: $ab-normal-font-size
+    color: $title-color
+
+/* Image Stack (Overlap): */
+.imageStack
+  display: inline-grid
+  grid-template-columns: repeat(3, 1fr)
+  align-items: center
+
+.ski
+  width: 15rem
+  grid-row: 1
+  grid-column: 8 / span 1
+  z-index: 1
+
+.mtb
+  width: 30rem
+  grid-column: 4 / -1
+  grid-row: 1
+
+/* @media */
+
+@media (min-width: 1500px)
+  .ski
+    width: 20rem
+    grid-column: 10 / span 1
+
+  .mtb
+    width: 35rem
+
+@media (min-width: 1100px)
+  .imageStack
+    grid-template-columns: repeat(8, 1fr)
+
+@media (min-width: 1000px)
+  article
+    padding: $box-small-padding
+
+
+
+
+
+
+
+
